@@ -40,7 +40,7 @@ app.post("/", function(req, res){
 
   const jsonData = JSON.stringify(data); //js object to flatpack json which we will send to mailchimp
 
-  const url = "https://us11.api.mailchimp.com/3.0/lists/"+process.env.LIST_ID; //last path is list id becoz in mailchimp we can have multiple lists so we have to specify which list we want to send the data to
+  const url = "https://us11.api.mailchimp.com/3.0/lists/" + process.env.LIST_ID; //last path is list id becoz in mailchimp we can have multiple lists so we have to specify which list we want to send the data to
 
   const options = {        //js object of options
     method: "POST",
