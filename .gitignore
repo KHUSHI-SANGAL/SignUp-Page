@@ -1,11 +1,4 @@
 node_modules
 
-#API key
-#66821008923fa5b1f2b604b1df1f80f5-us11
-
-#List or audience ID
-#1ed8af9701   //it identifies the list that you want to put your subscribers into
-
-
 # dotenv environment variables file
 .env
