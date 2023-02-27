@@ -38,11 +38,11 @@ app.post("/", function(req, res){
 
   const jsonData = JSON.stringify(data); //js object to flatpack json which we will send to mailchimp
 
-  const url = "https://us11.api.mailchimp.com/3.0/lists/1ed8af9701"; //last path is list id becoz in mailchimp we can have multiple lists so we have to specify which list we want to send the data to
+  const url = "https://us11.api.mailchimp.com/3.0/lists/LIST_ID"; //last path is list id becoz in mailchimp we can have multiple lists so we have to specify which list we want to send the data to
 
   const options = {        //js object of options
     method: "POST",
-    auth: "khushi1:c27a6cc28157ebca793ad7ea084ba078-us11"  //username:password
+    auth: "USERNAME:KEY"  //username:password
   };
 
 
@@ -75,12 +75,6 @@ app.post("/failure", function(req, res){
   res.redirect("/");
 });
 
-app.listen(process.env.PORT || 3000, function(){ //dynamic port the heroku will decide on the go.
-  console.log("Server listening on port 3000.");
+app.listen(process.env.PORT || LOCALPORT, function(){ //dynamic port the heroku will decide on the go.
+  console.log("Server listening on port " + LOCALPORT);
 });
-
-//API key
-//c27a6cc28157ebca793ad7ea084ba078-us11
-
-//List or audience ID
-//1ed8af9701   //it identifies the list that you want to put your subscribers into
