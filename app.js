@@ -77,6 +77,11 @@ app.post("/failure", function(req, res){
   res.redirect("/");
 });
 
-app.listen(process.env.PORT || process.env.LOCALPORT, function(){ //dynamic port the heroku will decide on the go.
-  console.log("Server listening on port " + process.env.LOCALPORT);
+app.listen(process.env.PORT || 3000, function(){ //dynamic port the heroku will decide on the go.
+  if(process.env.PORT){
+    console.log("Server listening on port " + process.env.PORT);
+  }else{
+    console.log("Server listening on port 3000.");
+  }
+
 });
