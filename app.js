@@ -10,7 +10,7 @@ const https = require("https");
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname));   //renders all static files like css and images
 
 
 app.get("/", function(req,res){
@@ -22,8 +22,8 @@ app.post("/", function(req, res){
   const firstName = req.body.fName;
   const lastName = req.body.lName;
   const email = req.body.email;
-  const data = {
-    members: [
+  const data = {   //data that we want to post to mailchimp API
+    members: [  //members  is an array of objects or the users that we want to subscribe
       {
         email_address: email,
         status: "subscribed",
@@ -36,13 +36,13 @@ app.post("/", function(req, res){
   };
 
 
-  const jsonData = JSON.stringify(data); //js to flatpack json
+  const jsonData = JSON.stringify(data); //js object to flatpack json which we will send to mailchimp
 
-  const url = "https://us11.api.mailchimp.com/3.0/lists/1ed8af9701";
+  const url = "https://us11.api.mailchimp.com/3.0/lists/1ed8af9701"; //last path is list id becoz in mailchimp we can have multiple lists so we have to specify which list we want to send the data to
 
-  const options = {
+  const options = {        //js object of options
     method: "POST",
-    auth: "khushi1:c27a6cc28157ebca793ad7ea084ba078-us11"
+    auth: "khushi1:c27a6cc28157ebca793ad7ea084ba078-us11"  //username:password
   };
 
 
@@ -61,22 +61,26 @@ app.post("/", function(req, res){
   });
 
 
-  request.write(jsonData);
+  request.write(jsonData);   //we specify which data we want to post to external server using request
   request.end();   //very important line
 
   console.log(firstName +" " + lastName + " " + email);
 });
 
+
+
+
+//for try again button on failure page to redirect to the home route
 app.post("/failure", function(req, res){
   res.redirect("/");
 });
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3000, function(){ //dynamic port the heroku will decide on the go.
   console.log("Server listening on port 3000.");
-})
+});
 
 //API key
 //c27a6cc28157ebca793ad7ea084ba078-us11
 
 //List or audience ID
-//1ed8af9701
+//1ed8af9701   //it identifies the list that you want to put your subscribers into
